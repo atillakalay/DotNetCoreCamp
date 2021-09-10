@@ -18,10 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\" />
     <Folder Include="Abstract\" />
-    <Folder Include="Context\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
