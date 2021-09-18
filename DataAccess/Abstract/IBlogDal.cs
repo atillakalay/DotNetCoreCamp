@@ -1,7 +1,8 @@
-﻿
+﻿using Entities.Concrete;
+
 namespace DataAccess.Abstract
 {
-  public  interface IBlogDal
+  public  interface IBlogDal : IGenericDal<Blog>
     {
     }
 }
