@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace DataAccess.Abstract
 {
@@ -9,6 +11,7 @@ namespace DataAccess.Abstract
         void Delete(T entity);
         List<T> GetAll();
         T GetById(int id);
+        List<T> GetAll(Expression<Func<T, bool>> filter);
 
     }
 }

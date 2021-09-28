@@ -9,8 +9,14 @@ namespace DotNetCoreCamp.Controllers
         private BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         public IActionResult Index()
         {
-            var blogs = _blogManager.GetAll();
+            var blogs = _blogManager.GetBlogListWithCategory();
             return View(blogs);
+        }
+
+        public IActionResult BlogReadAll(int id)
+        {
+            var blog = _blogManager.GetById(id);
+            return View(blog);
         }
     }
 }
