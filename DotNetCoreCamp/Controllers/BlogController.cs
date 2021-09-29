@@ -15,6 +15,7 @@ namespace DotNetCoreCamp.Controllers
 
         public IActionResult BlogReadAll(int id)
         {
+            ViewBag.blogId = id;
             var blog = _blogManager.GetAll(id);
             return View(blog);
         }
