@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Entities.Concrete.Comment>
 
-@if (Model.Count() > 0)
+@if (Model.Count() != 0)
 {
     <div class="comment-top">
         <h4>Yorumlar</h4>
@@ -16,39 +16,55 @@
                     </p>
                 </div>
             </div>
-            <div class="comment-top">
-                <h4>Yorumunuzu Bırakın!</h4>
-                <div class="comment-bottom">
-                    <form action="#" method="post">
-                        <input class="form-control" type="text" name="Name" placeholder="Adınız..." required="">
-                        <input class="form-control" type="email" name="Email" placeholder="Mail Adresiniz..." required="">
-
-                        <input class="form-control" type="text" name="Subject" placeholder="Konu..." required="">
-
-                        <textarea class="form-control" name="Message" placeholder="Mesajınız..." required=""></textarea>
-                        <button type="submit" class="btn btn-primary submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-
         }
+        <div class="comment-top">
+            <h4>Yorumunuzu Bırakın!</h4>
+            <div class="comment-bottom">
+                <form action="#" method="post">
+                    <input class="form-control" type="text" name="Name" placeholder="Adınız..." required="">
+                    <input class="form-control" type="email" name="Email" placeholder="Mail Adresiniz..." required="">
+
+                    <input class="form-control" type="text" name="Subject" placeholder="Konu..." required="">
+
+                    <textarea class="form-control" name="Message" placeholder="Mesajınız..." required=""></textarea>
+                    <button type="submit" class="btn btn-primary submit">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    
-
 }
-<div class="comment-top">
-    <h4>İlk Yorumu Siz Bırakın!</h4>
-    <div class="comment-bottom">
-        <form action="#" method="post">
-            <input class="form-control" type="text" name="Name" placeholder="Adınız..." required="">
-            <input class="form-control" type="email" name="Email" placeholder="Mail Adresiniz..." required="">
+@if (Model.Count() <= 0)
+{
+    <div class="comment-top">
+        <div class="comment-top">
+            <h4>İlk Yorumunuzu Bırakın!</h4>
+            <div class="comment-bottom">
+                <form action="#" method="post">
+                    <input class="form-control" type="text" name="Name" placeholder="Adınız..." required="">
+                    <input class="form-control" type="email" name="Email" placeholder="Mail Adresiniz..." required="">
 
-            <input class="form-control" type="text" name="Subject" placeholder="Konu..." required="">
+                    <input class="form-control" type="text" name="Subject" placeholder="Konu..." required="">
 
-            <textarea class="form-control" name="Message" placeholder="Mesajınız..." required=""></textarea>
-            <button type="submit" class="btn btn-primary submit">Submit</button>
-        </form>
+                    <textarea class="form-control" name="Message" placeholder="Mesajınız..." required=""></textarea>
+                    <button type="submit" class="btn btn-primary submit">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
-</div>
+}
+
+@*<div class="comment-top">
+        <h4>İlk Yorumu Siz Bırakın!</h4>
+        <div class="comment-bottom">
+            <form action="#" method="post">
+                <input class="form-control" type="text" name="Name" placeholder="Adınız..." required="">
+                <input class="form-control" type="email" name="Email" placeholder="Mail Adresiniz..." required="">
+
+                <input class="form-control" type="text" name="Subject" placeholder="Konu..." required="">
+
+                <textarea class="form-control" name="Message" placeholder="Mesajınız..." required=""></textarea>
+                <button type="submit" class="btn btn-primary submit">Submit</button>
+            </form>
+        </div>
+    </div>*@
 
