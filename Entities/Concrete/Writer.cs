@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Concrete
 {
-   public class Writer
+    public class Writer
     {
         [Key]
         public int WriterId { get; set; }
@@ -11,6 +12,8 @@ namespace Entities.Concrete
         public string WriterImage { get; set; }
         public string WriterMail { get; set; }
         public string WriterPassword { get; set; }
+        public string WriterPasswordRepeat { get; set; }
         public bool WriterStatus { get; set; }
+        public List<Blog> Blogs { get; set; }
     }
 }

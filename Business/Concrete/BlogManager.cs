@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -43,9 +39,14 @@ namespace Business.Concrete
             return _blogDal.GetListWithCategory();
         }
 
+        public List<Blog> GetBlogListWithWriter(int id)
+        {
+            return _blogDal.GetAll(b => b.BlogId == b.WriterId);
+        }
+
         public List<Blog> GetAll(int id)
         {
-            return _blogDal.GetAll(x => x.BlogId == id);
+            return _blogDal.GetAll(b => b.BlogId == id);
         }
 
         public Blog GetById(int id)

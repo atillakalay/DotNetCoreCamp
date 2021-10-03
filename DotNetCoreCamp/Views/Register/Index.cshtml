@@ -1,0 +1,65 @@
+﻿@model Entities.Concrete.Writer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Yazar Kayıt Sayfası</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+                @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                {
+                    <form method="post">
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationCustom01">Ad Soyad:</label>
+                                @Html.TextBoxFor(w => w.WriterName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WriterName, "", new { @style = "color:red" })
+                                @*<input type="text" class="form-control" id="validationDefault01" name="WriterName" required="">*@
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationCustom02">E-Mail:</label>
+                                @Html.TextBoxFor(w => w.WriterMail, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WriterMail, "", new { @style = "color:red" })
+                                @*<input type="text" class="form-control" id="validationDefault02" name="WriterMail" required="">*@
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1 mb-2">Şifre</label>
+                                @Html.TextBoxFor(w => w.WriterPassword, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WriterPassword, "", new { @style = "color:red" })
+                                @*<input type="password" class="form-control" id="password1" name="WriterPassword" required="">*@
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword2 mb-2">Şifrenizi Tekrar Giriniz:</label>
+                                @Html.TextBoxFor(w => w.WriterPassword, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WriterPassword, "", new { @style = "color:red" })
+                                @*<input type="password" class="form-control" id="password2" name="WriterPassword" required="">*@
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword2 mb-2">Görsel Yolu:</label>
+                                @Html.TextBoxFor(w => w.WriterImage, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WriterImage, "", new { @style = "color:red" })
+                                @*<input type="text" class="form-control" id="" name="WriterImage" required="">*@
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
+                        <p>
+                            <a href="#" id="btn1">Tüm şartları okudum, kabul ediyorum.</a>
+                        </p>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        $('#btn1').click(function () {
+            swal("Site Kabul Şartları", "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak iterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veri tabanlarımızda saklanmaktadır.");
+        });
+    </script>
+</section>

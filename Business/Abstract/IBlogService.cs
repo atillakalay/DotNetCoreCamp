@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Entities.Concrete;
 
 namespace Business.Abstract
@@ -13,8 +9,10 @@ namespace Business.Abstract
         void Delete(Blog blog);
         void Update(Blog blog);
         List<Blog> GetAll();
-        List<Blog> GetBlogListWithCategory();
+
         List<Blog> GetAll(int id);
+        List<Blog> GetBlogListWithCategory();
+        List<Blog> GetBlogListWithWriter(int id);
         Blog GetById(int id);
     }
 }
