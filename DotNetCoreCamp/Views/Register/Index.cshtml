@@ -35,8 +35,8 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputPassword2 mb-2">Şifrenizi Tekrar Giriniz:</label>
-                                @Html.TextBoxFor(w => w.WriterPassword, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(w => w.WriterPassword, "", new { @style = "color:red" })
+                                @Html.TextBoxFor(w => w.WriterPasswordRepeat, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WriterPasswordRepeat, "", new { @style = "color:red" })
                                 @*<input type="password" class="form-control" id="password2" name="WriterPassword" required="">*@
                             </div>
                             <div class="form-group col-md-6">

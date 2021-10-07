@@ -1,5 +1,7 @@
-﻿using Business.Concrete;
+﻿using System;
+using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -12,10 +14,21 @@ namespace DotNetCoreCamp.Controllers
         {
             return View();
         }
-        public IActionResult PartialAddComment()
+        [HttpGet]
+        public PartialViewResult PartialAddComment()
         {
-            return View();
+            return PartialView();
         }
+        [HttpPost]
+        public PartialViewResult PartialAddComment(Comment comment)
+        {
+            comment.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            comment.CommentStatus = true;
+            comment.BlogId = 2;
+            _commentManager.Add(comment);
+            return PartialView();
+        }
+        [HttpPost]
         public IActionResult CommentListByBlog(int id)
         {
             var comments = _commentManager.GetAll(id);
