@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
                 <h3>Hakkımızda</h3>
-                <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. lacinia eget consectetur sed, convallis at tellus..</p>
+                <p>yazarın adı ve gönderi zamanı belirtilir. Yayıncının seçimine göre okuyucular yazılara yorum yapılabilir. Yorumlar, blog kültürünün çok önemli bir dinamiğidir; bu sayede yazar ve okuyucular arasında iletişim sağlanır. Bunun dışında, geri izleme (trackback) mekanizmasıyla, belirli bir yazı hakkında yazılan diğer yazıların belirlenebilmesi de mümkündür....</p>
                 <div class="read">
-                    <a href="single.html" class="btn btn-primary read-m">Devamını Oku</a>
+                    <a href="/About/Index/" class="btn btn-primary read-m">Devamını Oku</a>
                 </div>
             </div>
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
@@ -72,20 +72,7 @@
                 </div>
             </div>
             <!-- subscribe -->
-            <div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
-                <h2>Signup to our newsletter</h2>
-                <div class="subscribe-main text-left">
-                    <div class="subscribe-form">
-                        <form action="#" method="post" class="subscribe_form">
-                            <input class="form-control" type="email" placeholder="Enter your email..." required="">
-                            <button type="submit" class="btn btn-primary submit">Submit</button>
-                        </form>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <p>We respect your privacy.No spam ever!</p>
-                </div>
-                <!-- //subscribe -->
-            </div>
+           @await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.cshtml")
         </div>
         <!-- footer -->
         <div class="footer-cpy text-center">
@@ -122,8 +109,8 @@
             </div>
             <div class="w3layouts-agile-copyrightbottom">
                 <p>
-                    © @DateTime.Now.Year Weblog. All Rights Reserved | Design by
-                    <a href="http://w3layouts.com/">W3layouts</a>
+                    © @DateTime.Now.Year Asp.Net Core Proje Kampı. Tüm Hakları Saklıdır | Design by
+                    <a href="http://github.com/Atillakalay">Atilla Kalay</a>
                 </p>
 
             </div>
