@@ -25,6 +25,10 @@
                                 @Html.ValidationMessageFor(w => w.WriterMail, "", new { @style = "color:red" })
                                 @*<input type="text" class="form-control" id="validationDefault02" name="WriterMail" required="">*@
                             </div>
+                            @*<div class="form-group col-md-6">
+                                    <label for="exampleInputPassword2 mb-2">Şehir</label>
+                                    @Html.DropDownList("cities", (ViewBag.CitiesViewModel), "Şehir Seçiniz", new { @class = "form-control dropdown" })
+                                </div>*@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -63,3 +67,4 @@
         });
     </script>
 </section>
+

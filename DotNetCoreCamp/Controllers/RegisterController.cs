@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Business.Concrete;
-using Business.ValiditonRules;
+using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation.Results;
@@ -25,19 +21,24 @@ namespace DotNetCoreCamp.Controllers
         {
             WriterValidator writerValidator = new WriterValidator();
             ValidationResult result = writerValidator.Validate(writer);
-            if (result.IsValid)
+            if (result.IsValid && writer.WriterPassword == writer.WriterPasswordRepeat)
             {
                 writer.WriterStatus = true;
                 writer.WriterAbout = "Deneme Test";
                 _writerManager.Add(writer);
-                return View("Index", "Blog");
+                return RedirectToAction("Index", "Blog");
             }
-
-            foreach (var results in result.Errors)
+            else if (!result.IsValid)
             {
-                ModelState.AddModelError(results.PropertyName, results.ErrorMessage);
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
             }
-
+            else
+            {
+                ModelState.AddModelError("WriterPassword", "Girdiğiniz Şifreler Eşleşmedi Lütfen Tekrar Deneyin");
+            }
             return View();
         }
     }
