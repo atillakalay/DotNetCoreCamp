@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -49,6 +50,10 @@ namespace Business.Concrete
             return _blogDal.GetAll(b => b.BlogId == id);
         }
 
+        public List<Blog> GetLastThreeBlog()
+        {
+            return _blogDal.GetAll().Take(3).ToList();
+        }
         public Blog GetById(int id)
         {
             return _blogDal.GetById(id);

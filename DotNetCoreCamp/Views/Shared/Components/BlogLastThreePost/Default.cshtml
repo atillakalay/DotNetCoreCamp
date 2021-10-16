@@ -1,0 +1,32 @@
+﻿@using Entities.Concrete
+@model List<Blog>
+
+
+
+<div class="tech-btm">
+    <h3>Son Gönderiler</h3>
+    <div class="blog-grids row mb-3">
+        @foreach (var blog in Model)
+        {
+        <div class="col-md-5 blog-grid-left">
+            <a href="/Blog/BlogReadAll/@blog.BlogId">
+                <img src="~/CoreBlogTheme/images/4.jpg" class="card-img-top img-fluid" alt="">
+            </a>
+        </div>
+
+        <div class="col-md-7 blog-grid-right">
+            <h5>
+                <a href="/Blog/BlogReadAll/@blog.BlogId" style="color: white">@blog.BlogTitle</a>
+            </h5>
+            <h5>
+                <a href="/Blog/BlogReadAll/@blog.BlogId">@blog.BlogContent.Substring(0,blog.BlogContent.Substring(0,50).LastIndexOf(" "))...</a>
+            </h5>
+            <div class="sub-meta">
+                <span>
+                    <i class="far fa-clock"></i>@blog.BlogCreateDate.ToShortDateString()
+                </span>
+            </div>
+        </div>
+        }
+    </div>
+</div>
