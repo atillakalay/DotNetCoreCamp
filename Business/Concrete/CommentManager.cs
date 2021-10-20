@@ -43,9 +43,9 @@ namespace Business.Concrete
             return _commentDal.GetAll(x => x.BlogId == id);
         }
 
-        public Blog GetById(int id)
+        public Comment GetById(int id)
         {
-            return GetById(id);
+            return _commentDal.GetById(id);
         }
     }
 }

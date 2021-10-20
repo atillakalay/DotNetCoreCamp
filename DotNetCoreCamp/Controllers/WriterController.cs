@@ -16,5 +16,17 @@ namespace DotNetCoreCamp.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public PartialViewResult WriterNavbarPartial()
+        {
+            return PartialView();
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        public PartialViewResult WriterFooterPartial()
+        {
+            return PartialView();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using System.Collections.Generic;
+using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -17,6 +18,26 @@ namespace Business.Concrete
         {
             _newsLetterDal.Add(newsLetter);
 
+        }
+
+        public void Delete(NewsLetter entity)
+        {
+            _newsLetterDal.Delete(entity);
+        }
+
+        public void Update(NewsLetter entity)
+        {
+            _newsLetterDal.Update(entity);
+        }
+
+        public List<NewsLetter> GetAll()
+        {
+            return _newsLetterDal.GetAll();
+        }
+
+        public NewsLetter GetById(int id)
+        {
+            return _newsLetterDal.GetById(id);
         }
     }
 }

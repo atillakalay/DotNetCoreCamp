@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using System.Collections.Generic;
+using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -16,6 +17,26 @@ namespace Business.Concrete
         public void Add(Contact contact)
         {
             _contactDal.Add(contact);
+        }
+
+        public void Delete(Contact entity)
+        {
+            _contactDal.Delete(entity);
+        }
+
+        public void Update(Contact entity)
+        {
+            _contactDal.Update(entity);
+        }
+
+        public List<Contact> GetAll()
+        {
+            return _contactDal.GetAll();
+        }
+
+        public Contact GetById(int id)
+        {
+            return _contactDal.GetById(id);
         }
     }
 }
