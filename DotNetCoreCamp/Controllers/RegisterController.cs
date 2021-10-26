@@ -31,7 +31,7 @@ namespace DotNetCoreCamp.Controllers
                 writer.WriterStatus = true;
                 writer.WriterAbout = "Deneme Test";
                 _writerManager.Add(writer);
-                return RedirectToAction("Index", "Blog");
+                return RedirectToAction("Index", "Writer");
             }
             else if (!result.IsValid)
             {

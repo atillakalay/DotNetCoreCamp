@@ -42,7 +42,7 @@ namespace Business.Concrete
 
         public List<Blog> GetBlogListWithWriter(int id)
         {
-            return _blogDal.GetAll(b => b.BlogId == b.WriterId);
+            return _blogDal.GetAll(b => b.WriterId == id);
         }
 
         public List<Blog> GetAll(int id)

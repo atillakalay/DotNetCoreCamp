@@ -23,7 +23,16 @@
             <td>@item.BlogTitle</td>
             <td>@item.BlogCreateDate.ToShortDateString()</td>
             <td>@item.CategoryId</td>
-            <td>@item.BlogStatus</td>
+            <td>
+                @if (item.BlogStatus)
+                {
+                    <span class="badge badge-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge badge-warning">Pasif</span>
+                }
+            </td>
             <td><a href="#" class="btn btn-danger">Sil</a></td>
             <td><a href="#" class="btn btn-warning">Düzenle</a></td>
         </tr>
