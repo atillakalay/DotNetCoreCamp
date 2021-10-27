@@ -15,6 +15,7 @@ namespace DotNetCoreCamp.Controllers
     [AllowAnonymous]
     public class BlogController : Controller
     {
+        private CategoryManager _categoryManager = new CategoryManager(new EfCategoryRepository());
         private BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         [HttpGet]
         public IActionResult Index()
@@ -43,11 +44,11 @@ namespace DotNetCoreCamp.Controllers
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
             List<SelectListItem> categories = (from c in categoryManager.GetAll()
-                select new SelectListItem
-                {
-                    Text = c.CategoryName,
-                    Value = c.CategoryId.ToString()
-                }).ToList();
+                                               select new SelectListItem
+                                               {
+                                                   Text = c.CategoryName,
+                                                   Value = c.CategoryId.ToString()
+                                               }).ToList();
             ViewBag.categoriesList = categories;
             return View();
         }
@@ -55,8 +56,8 @@ namespace DotNetCoreCamp.Controllers
         public IActionResult BlogAdd(Blog blog)
         {
             BlogValidator blogValidator = new BlogValidator();
-            ValidationResult result = blogValidator.Validate(blog);
-            if (result.IsValid)
+            ValidationResult validationResult = blogValidator.Validate(blog);
+            if (validationResult.IsValid)
             {
                 blog.BlogStatus = true;
                 blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
@@ -66,12 +67,40 @@ namespace DotNetCoreCamp.Controllers
             }
             else
             {
-                foreach (var item in result.Errors)
+                foreach (var item in validationResult.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            GetCategoryList();
             return View();
+        }
+        [HttpGet]
+        public IActionResult EditBlog(int id)
+        {
+            var blogDetails = _blogManager.GetById(id);
+            GetCategoryList();
+            return View(blogDetails);
+        }
+        [HttpPost]
+        public IActionResult EditBlog(Blog blog)
+        {
+            var value = _blogManager.GetById(blog.BlogId);
+            blog.WriterId = 1;
+            blog.BlogCreateDate = value.BlogCreateDate;
+            blog.BlogStatus = true;
+            _blogManager.Update(blog);
+            return RedirectToAction("BlogListByWriter");
+        }
+        public void GetCategoryList()
+        {
+            List<SelectListItem> categories = (from c in _categoryManager.GetAll()
+                select new SelectListItem
+                {
+                    Text = c.CategoryName,
+                    Value = c.CategoryId.ToString()
+                }).ToList();
+            ViewBag.categoriesList = categories;
         }
     }
 }
