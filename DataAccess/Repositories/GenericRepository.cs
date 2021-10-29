@@ -18,8 +18,9 @@ namespace DataAccess.Repositories
 
         public void Update(T entity)
         {
-            _context.Update(entity);
-            _context.SaveChanges();
+            using var c = new Context();
+            c.Update(entity);
+            c.SaveChanges();
         }
 
         public void Delete(T entity)
