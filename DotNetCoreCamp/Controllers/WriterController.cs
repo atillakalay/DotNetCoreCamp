@@ -1,6 +1,9 @@
-﻿using Business.Concrete;
+﻿using System;
+using System.IO;
+using Business.Concrete;
 using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
+using DotNetCoreCamp.Models;
 using Entities.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
@@ -68,5 +71,35 @@ namespace DotNetCoreCamp.Controllers
             }
             return View();
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult WriterAdd()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult WriterAdd(AddProfileImage addProfileImage)
+        {
+            Writer writer = new Writer();
+            if (addProfileImage.WriterImage != null)
+            {
+                var extension = Path.GetExtension(addProfileImage.WriterImage.FileName);
+                var newImageName = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newImageName);
+                var stream = new FileStream(location, FileMode.Create);
+                addProfileImage.WriterImage.CopyTo(stream);
+                writer.WriterImage = newImageName;
+            }
+            writer.WriterMail = addProfileImage.WriterMail;
+            writer.WriterName = addProfileImage.WriterName;
+            writer.WriterPassword = addProfileImage.WriterPassword;
+            writer.WriterPasswordRepeat = addProfileImage.WriterPasswordRepeat;
+            writer.WriterStatus = true;
+            writer.WriterAbout = addProfileImage.WriterAbout;
+            _writerManager.Add(writer);
+            return RedirectToAction("Index", "Dashboard");
+        }
     }
+
 }

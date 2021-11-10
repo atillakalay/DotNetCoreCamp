@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Components\BlogListDashboard\" />
+    <Folder Include="wwwroot\WriterImageFiles\" />
   </ItemGroup>
 
 </Project>

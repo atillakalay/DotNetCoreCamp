@@ -7,10 +7,12 @@ using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DotNetCoreCamp.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         private WriterManager _writerManager = new WriterManager(new EfWriterRepository());
