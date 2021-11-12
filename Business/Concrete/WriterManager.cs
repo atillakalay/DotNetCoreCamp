@@ -33,6 +33,10 @@ namespace Business.Concrete
         {
             return _writerDal.GetAll();
         }
+        public List<Writer> GetAll(int id)
+        {
+            return _writerDal.GetAll(w => w.WriterId == id);
+        }
 
         public Writer GetById(int id)
         {
