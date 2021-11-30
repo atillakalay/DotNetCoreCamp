@@ -9,7 +9,8 @@ namespace DotNetCoreCamp.ViewComponents.Writer
         private WriterManager writerManager = new WriterManager(new EfWriterRepository());
         public IViewComponentResult Invoke()
         {
-            var writers = writerManager.GetListWriterById(1);
+            var userEmail = User.Identity.Name;
+             var writers = writerManager.GetAll(email:userEmail);
             return View(writers);
         }
     }

@@ -12,10 +12,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DotNetCoreCamp.Controllers
 {
-    [AllowAnonymous]
     public class BlogController : Controller
     {
         private CategoryManager _categoryManager = new CategoryManager(new EfCategoryRepository());
+        private WriterManager _writerManager = new WriterManager(new EfWriterRepository());
         private BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         [HttpGet]
         public IActionResult Index()
@@ -35,7 +35,10 @@ namespace DotNetCoreCamp.Controllers
         [HttpGet]
         public IActionResult BlogListByWriter()
         {
-            var blogs = _blogManager.GetBlogListWithWriter(1);
+            var userMail = User.Identity.Name;
+            var writerId = _writerManager.GetAll(userMail).Select(w => w.WriterId).FirstOrDefault();
+            var writerValues = _writerManager.GetById(writerId);
+            var blogs = _blogManager.GetBlogListWithWriter(writerId);
             return View(blogs);
         }
 
@@ -55,13 +58,16 @@ namespace DotNetCoreCamp.Controllers
         [HttpPost]
         public IActionResult BlogAdd(Blog blog)
         {
+            var userMail = User.Identity.Name;
+            var writerId = _writerManager.GetAll(userMail).Select(w => w.WriterId).FirstOrDefault();
+            var writerValues = _writerManager.GetById(writerId);
             BlogValidator blogValidator = new BlogValidator();
             ValidationResult validationResult = blogValidator.Validate(blog);
             if (validationResult.IsValid)
             {
                 blog.BlogStatus = true;
                 blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                blog.WriterId = 1;
+                blog.WriterId = writerId;
                 _blogManager.Add(blog);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
@@ -85,8 +91,11 @@ namespace DotNetCoreCamp.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
+            var userMail = User.Identity.Name;
+            var writerId = _writerManager.GetAll(userMail).Select(w => w.WriterId).FirstOrDefault();
+            var writerValues = _writerManager.GetById(writerId);
             var value = _blogManager.GetById(blog.BlogId);
-            blog.WriterId = 1;
+            blog.WriterId = writerId;
             blog.BlogCreateDate = value.BlogCreateDate;
             blog.BlogStatus = true;
             _blogManager.Update(blog);
@@ -95,11 +104,11 @@ namespace DotNetCoreCamp.Controllers
         public void GetCategoryList()
         {
             List<SelectListItem> categories = (from c in _categoryManager.GetAll()
-                select new SelectListItem
-                {
-                    Text = c.CategoryName,
-                    Value = c.CategoryId.ToString()
-                }).ToList();
+                                               select new SelectListItem
+                                               {
+                                                   Text = c.CategoryName,
+                                                   Value = c.CategoryId.ToString()
+                                               }).ToList();
             ViewBag.categoriesList = categories;
         }
     }

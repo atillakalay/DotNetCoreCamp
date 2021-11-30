@@ -1,0 +1,33 @@
+﻿@using Entities.Concrete
+@model List<Message2>
+@{
+    ViewData["Title"] = "InBox";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Gelen Kutusu</h1>
+<table class="table table-hover">
+    <tr>
+        <th>Konu</th>
+        <th>Gönderen</th>
+        <th>Tarih</th>
+        <th>Mesajı Aç</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td hidden="hidden">@item.MessageId</td>
+            <td>@item.Subject</td>
+            <td>@item.SenderUserWriter.WriterName</td>
+            <td>@item.MessageDate.ToShortDateString()</td>
+            <td><a href="/Message/MessageDetails/@item.MessageId" class="btn btn-danger">Mesajı Aç</a></td>
+          
+        </tr>
+    }
+</table>
+<a href="/CoreBlogTheme/BlogAdd/" class="btn btn-primary" style="margin-top: 50px;margin-left: 800px  ">Yeni Mesaj Oluştur</a>
+
+
+
+
+

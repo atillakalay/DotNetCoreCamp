@@ -37,6 +37,10 @@ namespace Business.Concrete
         {
             return _writerDal.GetAll(w => w.WriterId == id);
         }
+        public List<Writer> GetAll(string email)
+        {
+            return _writerDal.GetAll(w => w.WriterMail == email);
+        }
 
         public Writer GetById(int id)
         {

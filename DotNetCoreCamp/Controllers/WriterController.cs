@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Business.Concrete;
 using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
@@ -19,6 +20,8 @@ namespace DotNetCoreCamp.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            var userMail = User.Identity.Name;
+            ViewBag.userMail = userMail;
             return View();
         }
         [AllowAnonymous]
@@ -39,14 +42,14 @@ namespace DotNetCoreCamp.Controllers
             return PartialView();
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var writerValues = _writerManager.GetById(1);
+            var userMail = User.Identity.Name;
+            var writerId = _writerManager.GetAll(userMail).Select(w => w.WriterId).FirstOrDefault();
+            var writerValues = _writerManager.GetById(writerId);
             return View(writerValues);
         }
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult WriterEditProfile(Writer writer, string passwordAgain)
         {
