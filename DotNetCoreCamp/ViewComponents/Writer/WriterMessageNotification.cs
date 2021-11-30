@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Business.Concrete;
+﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,13 +6,10 @@ namespace DotNetCoreCamp.ViewComponents.Writer
 {
     public class WriterMessageNotification : ViewComponent
     {
-        private MessageManager _messageManager = new MessageManager(new EfMessageRepository());
+        private Message2Manager _message2Manager = new Message2Manager(new EfMessage2Repository());
         public IViewComponentResult Invoke()
         {
-            string receiveEmail;
-            receiveEmail = "deneme@gmail.com";
-
-            var values = _messageManager.GetAll(receiveEmail);
+            var values = _message2Manager.GetAll(id:3);
             return View(values);
         }
     }
