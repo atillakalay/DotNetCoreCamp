@@ -26,11 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Pages\Components\BlogListDashboard\" />
     <Folder Include="wwwroot\WriterImageFiles\" />
   </ItemGroup>
