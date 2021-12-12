@@ -21,11 +21,13 @@
         <tr>
             <td hidden="hidden">@category.CategoryId</td>
             <td>@category.CategoryName</td>
-            <td><a href="#" class="btn btn-danger">Pasif Yap</a></td>
+            <td><a href="/Admin/Category/CategoryDelete/@category.CategoryId" id="DeleteBtn" onclick="return confirm('Silmek istediğinize emin misiniz');" class="btn btn-danger">Pasif Yap</a></td>
             <td><a href="#" class="btn btn-success">Aktif Yap</a></td>
             <td><a href="#" class="btn btn-primary">Düzenle</a></td>
         </tr>
     }
 </table>
+<br/>
+<a href="/Admin/Category/AddCategory/" class="btn btn-primary">Yeni Kategori Ekle</a>
 <br />
 @Html.PagedListPager((IPagedList)Model, pageNumber => Url.Action("Index", new { pageNumber }))
