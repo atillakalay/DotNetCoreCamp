@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.IO;
 using ClosedXML.Excel;
 using DotNetCoreCamp.Areas.Admin.Models;
+using DataAccess.Concrete;
 
 namespace DotNetCoreCamp.Areas.Admin.Controllers
 {
@@ -43,5 +45,56 @@ namespace DotNetCoreCamp.Areas.Admin.Controllers
             };
             return blogModels;
         }
+        public IActionResult BlogListExcel()
+        {
+            return View();
+        }
+
+        public IActionResult ExportDynamicExcelBlogList()
+        {
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Blog Listesi");
+                worksheet.Cell(1, 1).Value = "Blog ID";
+                worksheet.Cell(1, 2).Value = "Blog Adı";
+                int BlogRowCount = 2;
+                foreach (var item in BlogTitleList())
+                {
+                    worksheet.Cell(BlogRowCount, 1).Value = item.Id;
+                    worksheet.Cell(BlogRowCount, 2).Value = item.BlogName;
+                    BlogRowCount++;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheets",
+                        "Calisma1.xlsx");
+                }
+            }
+
+        }
+
+        public List<BlogModel2> BlogTitleList()
+        {
+            List<BlogModel2> blogModel2s = new List<BlogModel2>();
+            using (var context = new Context())
+            {
+                blogModel2s = context.Blogs.Select(x => new BlogModel2
+                {
+                    Id = x.BlogId,
+                    BlogName = x.BlogTitle
+                }).ToList();
+            }
+
+            return blogModel2s;
+        }
+
+        public IActionResult BlogTitleListExcel()
+        {
+            return View();
+        }
+
     }
 }
