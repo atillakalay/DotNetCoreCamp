@@ -26,6 +26,7 @@ namespace DataAccess.Concrete
         }
 
         public DbSet<About> Abouts { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
