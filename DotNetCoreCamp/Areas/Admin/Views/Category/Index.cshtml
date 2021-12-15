@@ -27,7 +27,5 @@
         </tr>
     }
 </table>
-<br/>
-<a href="/Admin/Category/AddCategory/" class="btn btn-primary">Yeni Kategori Ekle</a>
-<br />
 @Html.PagedListPager((IPagedList)Model, pageNumber => Url.Action("Index", new { pageNumber }))
+<a href="/Admin/Category/AddCategory/" class="btn btn-primary">Yeni Kategori Ekle</a>
