@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using System.Xml.Linq;
-using Business.Concrete;
+﻿using Business.Concrete;
 using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace DotNetCoreCamp.Areas.Admin.ViewComponents.Statistic
 {

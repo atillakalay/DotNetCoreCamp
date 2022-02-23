@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.IO;
-using ClosedXML.Excel;
-using DotNetCoreCamp.Areas.Admin.Models;
+﻿using ClosedXML.Excel;
 using DataAccess.Concrete;
+using DotNetCoreCamp.Areas.Admin.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace DotNetCoreCamp.Areas.Admin.Controllers
 {

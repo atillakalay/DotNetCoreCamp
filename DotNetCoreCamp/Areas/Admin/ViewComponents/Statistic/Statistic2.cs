@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using DataAccess.Concrete;
+﻿using DataAccess.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace DotNetCoreCamp.Areas.Admin.ViewComponents.Statistic
 {

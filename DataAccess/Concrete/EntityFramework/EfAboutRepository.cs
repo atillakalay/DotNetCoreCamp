@@ -4,7 +4,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAboutRepository:GenericRepository<About>,IAboutDal
+    public class EfAboutRepository : GenericRepository<About>, IAboutDal
     {
 
     }

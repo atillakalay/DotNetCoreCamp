@@ -16,7 +16,7 @@ namespace DotNetCoreCamp.Controllers
         [HttpPost]
         public PartialViewResult SubscribeMail(NewsLetter newsLetter)
         {
-            newsLetter.MailStatus=true;
+            newsLetter.MailStatus = true;
             _newsLetterManager.Add(newsLetter);
             return PartialView();
         }

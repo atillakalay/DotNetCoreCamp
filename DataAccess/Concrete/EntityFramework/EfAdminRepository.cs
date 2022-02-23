@@ -4,7 +4,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-   public class EfAdminRepository : GenericRepository<Admin>, IAdminDal
+    public class EfAdminRepository : GenericRepository<Admin>, IAdminDal
     {
     }
 }

@@ -1,14 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using Business.Concrete;
+﻿using Business.Concrete;
 using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
 using DotNetCoreCamp.Models;
 using Entities.Concrete;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace DotNetCoreCamp.Controllers
 {

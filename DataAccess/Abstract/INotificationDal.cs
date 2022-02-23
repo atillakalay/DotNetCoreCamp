@@ -2,7 +2,7 @@
 
 namespace DataAccess.Abstract
 {
-   public interface INotificationDal:IGenericDal<Notification>
+    public interface INotificationDal : IGenericDal<Notification>
     {
     }
 }

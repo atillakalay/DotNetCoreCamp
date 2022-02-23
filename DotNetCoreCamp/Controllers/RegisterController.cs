@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Business.Concrete;
+﻿using Business.Concrete;
 using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DotNetCoreCamp.Controllers
 {
@@ -51,11 +51,11 @@ namespace DotNetCoreCamp.Controllers
         public List<SelectListItem> GetCityList()
         {
             List<SelectListItem> adminRole = (from x in GetCity()
-                select new SelectListItem
-                {
-                    Text = x,
-                    Value = x
-                }).ToList();
+                                              select new SelectListItem
+                                              {
+                                                  Text = x,
+                                                  Value = x
+                                              }).ToList();
             return adminRole;
         }
         public List<string> GetCity()

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Entities.Concrete;
+﻿using Entities.Concrete;
+using System.Collections.Generic;
 
 namespace Business.Abstract
 {

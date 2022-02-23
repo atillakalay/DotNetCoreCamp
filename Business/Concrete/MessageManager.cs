@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Business.Abstract;
+﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using System.Collections.Generic;
 
 namespace Business.Concrete
 {
@@ -37,7 +32,7 @@ namespace Business.Concrete
         }
         public List<Message> GetAll(string receiveEmail)
         {
-            return _messageDal.GetAll(w=>w.Receiver== receiveEmail);
+            return _messageDal.GetAll(w => w.Receiver == receiveEmail);
         }
         public Message GetById(int id)
         {

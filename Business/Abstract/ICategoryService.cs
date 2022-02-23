@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 
 namespace Business.Abstract
 {
-    public interface ICategoryService:IGenericService<Category>
+    public interface ICategoryService : IGenericService<Category>
     {
     }
 }

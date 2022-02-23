@@ -1,13 +1,13 @@
 ﻿
 
-using System.Collections.Generic;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using System.Collections.Generic;
 
 namespace Business.Concrete
 {
-    public class AdminManager:IAdminService
+    public class AdminManager : IAdminService
     {
         private IAdminDal adminDal;
 
@@ -28,7 +28,7 @@ namespace Business.Concrete
 
         public void Update(Admin entity)
         {
-           adminDal.Update(entity);
+            adminDal.Update(entity);
         }
 
         public List<Admin> GetAll()

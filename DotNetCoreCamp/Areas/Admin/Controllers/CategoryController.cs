@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Business.Concrete;
+﻿using Business.Concrete;
 using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
 namespace DotNetCoreCamp.Areas.Admin.Controllers

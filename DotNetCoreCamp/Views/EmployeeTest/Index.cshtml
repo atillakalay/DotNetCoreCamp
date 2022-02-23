@@ -1,0 +1,25 @@
+﻿@using DotNetCoreCamp.Controllers
+@model List<Class1>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+	<tr>
+		<th>#</th>
+		<th>Adı Soyadı</th>
+		<th>Sil</th>
+		<th>Düzenle</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.Id</td>
+			<td>@item.Name</td>
+			<td><a href="/EmployeeTest/DeleteEmployee/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+			<td><a href="/EmployeeTest/EditEmployee/@item.Id" class="btn btn-outline-success">Düzenle</a></td>
+		</tr>
+	}
+</table>
+<a href="/EmployeeTest/AddEmployee/" class="btn btn-outline-primary">Yeni Çalışan Girişi</a>

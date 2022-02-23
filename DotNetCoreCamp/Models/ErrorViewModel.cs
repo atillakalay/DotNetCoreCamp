@@ -1,5 +1,3 @@
-using System;
-
 namespace DotNetCoreCamp.Models
 {
     public class ErrorViewModel

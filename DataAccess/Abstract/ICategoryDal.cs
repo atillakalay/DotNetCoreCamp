@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface ICategoryDal:IGenericDal<Category>
+    public interface ICategoryDal : IGenericDal<Category>
     {
     }
 }

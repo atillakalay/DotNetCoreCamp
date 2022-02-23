@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlogApiDemo.DataAccess;
+﻿using BlogApiDemo.DataAccess;
 using BlogApiDemo.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BlogApiDemo.Controllers
 {

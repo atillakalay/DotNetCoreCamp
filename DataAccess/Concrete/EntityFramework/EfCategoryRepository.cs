@@ -4,7 +4,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryRepository:GenericRepository<Category>,ICategoryDal
+    public class EfCategoryRepository : GenericRepository<Category>, ICategoryDal
     {
     }
 }

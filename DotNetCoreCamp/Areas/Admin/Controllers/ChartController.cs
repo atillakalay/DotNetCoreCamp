@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using DotNetCoreCamp.Areas.Admin.Models;
+﻿using DotNetCoreCamp.Areas.Admin.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace DotNetCoreCamp.Areas.Admin.Controllers
 {

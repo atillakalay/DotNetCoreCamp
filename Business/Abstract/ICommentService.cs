@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 
 namespace Business.Abstract
 {
-   public interface ICommentService : IGenericService<Comment>
+    public interface ICommentService : IGenericService<Comment>
     {
     }
 }

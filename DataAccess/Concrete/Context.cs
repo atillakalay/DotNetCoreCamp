@@ -1,9 +1,10 @@
 ﻿using Entities.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<AppUser,AppRole,int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,6 +19,7 @@ namespace DataAccess.Concrete
                 .HasForeignKey(m => m.SenderId)
                 .OnDelete(deleteBehavior: DeleteBehavior.ClientSetNull);
 
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Message2>()
                 .HasOne(w => w.ReceiverUserWriter)
                 .WithMany(w => w.WriterRecevier)

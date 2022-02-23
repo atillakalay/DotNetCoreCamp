@@ -4,7 +4,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfNotificationRepository:GenericRepository<Notification>,INotificationDal
+    public class EfNotificationRepository : GenericRepository<Notification>, INotificationDal
     {
     }
 }

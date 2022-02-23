@@ -1,7 +1,6 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 using FluentValidation;
+using System.Text.RegularExpressions;
 
 namespace Business.ValidationRules
 {

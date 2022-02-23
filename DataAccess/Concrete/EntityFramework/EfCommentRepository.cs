@@ -4,7 +4,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-  public  class EfCommentRepository : GenericRepository<Comment>, ICommentDal
+    public class EfCommentRepository : GenericRepository<Comment>, ICommentDal
     {
     }
 }

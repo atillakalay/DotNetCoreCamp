@@ -10,7 +10,7 @@ namespace DotNetCoreCamp.ViewComponents.Writer
         public IViewComponentResult Invoke()
         {
             var userEmail = User.Identity.Name;
-             var writers = writerManager.GetAll(email:userEmail);
+            var writers = writerManager.GetAll(email: userEmail);
             return View(writers);
         }
     }
