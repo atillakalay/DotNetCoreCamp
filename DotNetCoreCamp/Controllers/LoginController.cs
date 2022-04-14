@@ -1,9 +1,9 @@
-﻿using Entities.Concrete;
+﻿using DotNetCoreCamp.Models;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using DotNetCoreCamp.Models;
 
 namespace DotNetCoreCamp.Controllers
 {
