@@ -25,11 +25,6 @@ namespace DotNetCoreCamp.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserSignUpViewModel userSignUpViewModel)
         {
-            if (!userSignUpViewModel.TermsOfUse)
-            {
-                ModelState.AddModelError("TermsOfUse", "Sayfamıza kayıt olabilmek için lütfen gizlilik sözleşmesini kabul edin!");
-                return View(userSignUpViewModel);
-            }
             if (ModelState.IsValid)
             {
                 AppUser user = new AppUser()
