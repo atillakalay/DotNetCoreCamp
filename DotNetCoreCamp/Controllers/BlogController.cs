@@ -8,21 +8,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DotNetCoreCamp.Controllers
 {
+    [AllowAnonymous]
     public class BlogController : Controller
     {
         private CategoryManager _categoryManager = new CategoryManager(new EfCategoryRepository());
         private WriterManager _writerManager = new WriterManager(new EfWriterRepository());
         private BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         [HttpGet]
+
+       
         public IActionResult Index()
         {
             var blogs = _blogManager.GetBlogListWithCategory();
             return View(blogs);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult BlogReadAll(int id)
         {

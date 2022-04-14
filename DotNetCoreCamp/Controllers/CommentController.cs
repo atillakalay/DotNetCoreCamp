@@ -3,10 +3,12 @@ using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace DotNetCoreCamp.Controllers
 {
+    [AllowAnonymous]
     public class CommentController : Controller
     {
         private CommentManager _commentManager = new CommentManager(new EfCommentRepository());

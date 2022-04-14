@@ -1,14 +1,11 @@
-﻿@*<div class="comment-top">
-    <h4>Yorumunuzu Bırakın!</h4>
+﻿<div class="comment-top">
+    <h4>Yorum Yap</h4>
     <div class="comment-bottom">
-        <form action="#" method="post">
-            <input class="form-control" type="text" name="Name" placeholder="Adınız..." required="">
-            <input class="form-control" type="email" name="Email" placeholder="Mail Adresiniz..." required="">
-
-            <input class="form-control" type="text" name="Subject" placeholder="Konu..." required="">
-
-            <textarea class="form-control" name="Message" placeholder="Mesajınız..." required=""></textarea>
-            <button type="submit" class="btn btn-primary submit">Submit</button>
+        <form asp-action="PartialAddComment" asp-controller="Comment" method="post">
+            <input class="form-control" type="text" name="CommentUserName" placeholder="Adınız ve Soyadınız..." required="">
+            <input class="form-control" type="text" name="CommentTitle" placeholder="Konu..." required="">
+            <textarea class="form-control" name="CommentContent" placeholder="Yorumunuz..." required=""></textarea>
+            <button type="submit" class="btn btn-primary submit">Yorum Yap</button>
         </form>
     </div>
-</div>*@
+</div>
