@@ -1,11 +1,13 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace DotNetCoreCamp.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         private ContactManager _contactManager = new ContactManager(new EfContactRepository());

@@ -5,17 +5,26 @@ using DotNetCoreCamp.Models;
 using Entities.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using BusinessLayer.Concrete;
+using DataAccess.Concrete;
 
 namespace DotNetCoreCamp.Controllers
 {
 
     public class WriterController : Controller
     {
-        private WriterManager _writerManager = new WriterManager(new EfWriterRepository());
+        WriterManager _writerManager = new WriterManager(new EfWriterRepository());
+        private readonly UserManager<AppUser> _userManager;
+        public WriterController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
 
         [Authorize]
         public IActionResult Index()
@@ -43,36 +52,26 @@ namespace DotNetCoreCamp.Controllers
         }
 
         [HttpGet]
-        public IActionResult WriterEditProfile()
+        public async Task<IActionResult> WriterEditProfile()
         {
-            var userMail = User.Identity.Name;
-            var writerId = _writerManager.GetAll(userMail).Select(w => w.WriterId).FirstOrDefault();
-            var writerValues = _writerManager.GetById(writerId);
-            return View(writerValues);
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.Mail = values.Email;
+            model.NameSurname = values.NameSurname;
+            model.Username = values.UserName;
+            model.ImageUrl = values.ImageUrl;
+            return View(model);
         }
         [HttpPost]
-        public IActionResult WriterEditProfile(Writer writer, string passwordAgain)
+        public async Task<IActionResult> WriterEditProfile( UserUpdateViewModel userUpdateViewModel)
         {
-            WriterValidator writerValidator = new WriterValidator();
-            ValidationResult results = writerValidator.Validate(writer);
-            if (results.IsValid && writer.WriterPassword == passwordAgain)
-            {
-                writer.WriterStatus = true;
-                _writerManager.Update(writer);
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else if (!results.IsValid)
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("WriterPassword", "Girdiğiniz Şifreler Eşleşmiyor! Lütfen Tekrar Deneyiniz");
-            }
-            return View();
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            values.NameSurname = userUpdateViewModel.NameSurname;
+            values.ImageUrl = userUpdateViewModel.ImageUrl;
+            values.Email = userUpdateViewModel.Mail;
+            //values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, userUpdateViewModel.Password);
+            var result = await _userManager.UpdateAsync(values);
+            return RedirectToAction("Index", "Dashboard");
         }
         [AllowAnonymous]
         [HttpGet]

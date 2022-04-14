@@ -4,26 +4,16 @@
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
-<!--
-    Author: W3layouts
-    Author URL: http://w3layouts.com
-    License: Creative Commons Attribution 3.0 Unported
-    License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<link href="~/CoreBlogTheme/css/contact.css" rel='stylesheet' type='text/css' />
 
 <!DOCTYPE html>
 <html lang="zxx">
 
-<head>
-    <link href="~/CoreBlogTheme/css/contact.css" rel='stylesheet' type='text/css' />
-</head>
-
 <body>
-    <!--/main-->
     <section class="main-content-w3layouts-agileits">
 
-        <h3 class="tittle">Bize Ulaşın</h3>
-        <p class="sub text-center">Düşünceleriniz bizim için çok değerli.</p>
+        <h3 class="tittle">Bize Ulaşın!</h3>
+        <p class="sub text-center">DÜŞÜNCELERİNİZ BİZİM İÇİN ÇOK DEĞERLİ.</p>
         <div class="contact-map inner-sec">
 
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100949.24429313939!2d-122.44206553967531!3d37.75102885910819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1472190196783"
@@ -32,7 +22,6 @@
         <div class="ad-inf-sec bg-light">
             <div class="container">
                 <div class="address row">
-
                     <div class="col-lg-4 address-grid">
                         <div class="row address-info">
                             <div class="col-md-4 address-left text-center">
@@ -41,11 +30,10 @@
                             <div class="col-md-8 address-right text-left">
                                 <h6>Adres</h6>
                                 <p>
-                                    İstanbul, TR
+                                    Muş, Türkiye
                                 </p>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-lg-4 address-grid">
                         <div class="row address-info">
@@ -53,13 +41,11 @@
                                 <i class="far fa-envelope"></i>
                             </div>
                             <div class="col-md-8 address-right text-left">
-                                <h6>Email</h6>
+                                <h6>Mail</h6>
                                 <p>
-                                    <a href="mailto:atilla.kalayy@gmail.com"> atilla.kalayy@gmail.com</a>
-
+                                    <a href="mailto:blog@example.com"> blog@example.com</a>
                                 </p>
                             </div>
-
                         </div>
                     </div>
                     <div class="col-lg-4 address-grid">
@@ -69,10 +55,8 @@
                             </div>
                             <div class="col-md-8 address-right text-left">
                                 <h6>Telefon</h6>
-                                <p>+1 234 567 8901</p>
-
+                                <p>+90 234 567 8901</p>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -80,35 +64,33 @@
         </div>
         <div class="container">
             <div class="contact_grid_right">
-                <form action="#" method="post">
+                <form asp-action="Index" asp-controller="Contact" method="post">
                     <div class="row contact_left_grid">
                         <div class="col-md-6 con-left">
                             <div class="form-group">
-                                <label for="validationCustom01 my-2">Ad</label>
-                                <input class="form-control" type="text" name="ContactUserName" placeholder="" required="">
+                                <label for="validationCustom01 my-2">Adınız</label>
+                                <input class="form-control" type="text" name="ContactUserName" placeholder="Adınızı ve Soyadınızı Giriniz!" required="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Email</label>
-                                <input class="form-control" type="email" name="ContactMail" placeholder="" required="">
+                                <label for="exampleFormControlInput1">MAİL ADRESİNİZ</label>
+                                <input class="form-control" type="email" name="ContactMail" placeholder="Mail Adresinizi Giriniz!" required="">
                             </div>
                             <div class="form-group">
-                                <label for="validationCustom03 my-2">Konu</label>
-                                <input class="form-control" type="text" name="ContactSubject" placeholder="" required="">
+                                <label for="validationCustom03 my-2">Konunuz</label>
+                                <input class="form-control" type="text" name="ContactSubject" placeholder="Konuyu Giriniz!" required="">
                             </div>
                         </div>
                         <div class="col-md-6 con-right">
                             <div class="form-group">
-                                <label for="textarea">Mesaj</label>
-                                <textarea id="textarea" placeholder=""></textarea>
+                                <label for="textarea">Mesajınız</label>
+                                <textarea id="textarea" name="ContactMessage" placeholder="Mesajınızı Giriniz!"></textarea>
                             </div>
-                            <input class="form-control" type="submit" value="Gönder" name="ContactMessage">
-
+                            <input class="form-control" type="submit" value="Gönder">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </section>
-    <!--//main-->
 </body>
 </html>

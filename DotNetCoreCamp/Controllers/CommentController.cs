@@ -1,9 +1,9 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using Microsoft.AspNetCore.Authorization;
 
 
 namespace DotNetCoreCamp.Controllers

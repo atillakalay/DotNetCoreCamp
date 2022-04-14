@@ -3,12 +3,12 @@ using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Authorization;
 
 namespace DotNetCoreCamp.Controllers
 {
@@ -20,7 +20,7 @@ namespace DotNetCoreCamp.Controllers
         private BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         [HttpGet]
 
-       
+
         public IActionResult Index()
         {
             var blogs = _blogManager.GetBlogListWithCategory();
