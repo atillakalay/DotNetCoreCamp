@@ -44,9 +44,14 @@ namespace Business.Concrete
             return _message2Dal.GetById(id);
         }
 
-        public List<Message2> GetListMessageByWriter(int id)
+        public List<Message2> GetInBoxListMessageByWriter(int id)
         {
-            return _message2Dal.GetListMessageByWriter(id);
+            return _message2Dal.GetInboxWithMessageByWriter(id);
+        }
+
+        public List<Message2> GetSendBoxListMessageByWriter(int id)
+        {
+            return _message2Dal.GetSendBoxWithMessageByWriter(id);
         }
 
         Message2 IGenericService<Message2>.GetById(int id)

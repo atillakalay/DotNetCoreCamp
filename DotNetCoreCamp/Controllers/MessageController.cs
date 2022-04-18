@@ -1,24 +1,68 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using Microsoft.AspNetCore.Authorization;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace DotNetCoreCamp.Controllers
 {
-    [AllowAnonymous]
     public class MessageController : Controller
     {
-        private Message2Manager _message2Manager = new Message2Manager(new EfMessage2Repository());
+        Message2Manager _message2Manager = new Message2Manager(new EfMessage2Repository());
+        Context _context = new Context();
+
         public IActionResult InBox()
         {
-            var messages = _message2Manager.GetListMessageByWriter(id: 3);
-            return View(messages);
+            var userName = User.Identity.Name;
+            var userMail = _context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerId = _context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
+            var values = _message2Manager.GetInBoxListMessageByWriter(writerId);
+            if (values.Count() > 3)
+            {
+                values = values.TakeLast(3).ToList();
+            }
+            return View(values);
         }
-        [HttpGet]
+
+        public IActionResult SendBox()
+        {
+            var userName = User.Identity.Name;
+            var userMail = _context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerId = _context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
+            var values = _message2Manager.GetSendBoxListMessageByWriter(writerId);
+            if (values.Count() > 3)
+            {
+                values = values.TakeLast(3).ToList();
+            }
+            return View(values);
+        }
+
         public IActionResult MessageDetails(int id)
         {
-            var messages = _message2Manager.GetById(id);
-            return View(messages);
+            var value = _message2Manager.GetById(id);
+            return View(value);
+        }
+
+        [HttpGet]
+        public IActionResult SendMessage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SendMessage(Message2 message)
+        {
+            var userName = User.Identity.Name;
+            var userMail = _context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerID = _context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
+            message.SenderId = writerID;
+            message.ReceiverId = 2;
+            message.MessageStatus = true;
+            message.MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            _message2Manager.Add(message);
+            return RedirectToAction("Inbox");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using Business.ValidationRules;
+using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation.Results;
@@ -18,6 +19,8 @@ namespace DotNetCoreCamp.Controllers
         private CategoryManager _categoryManager = new CategoryManager(new EfCategoryRepository());
         private WriterManager _writerManager = new WriterManager(new EfWriterRepository());
         private BlogManager _blogManager = new BlogManager(new EfBlogRepository());
+        Context context = new Context();
+
         [HttpGet]
 
 
@@ -39,26 +42,28 @@ namespace DotNetCoreCamp.Controllers
         [HttpGet]
         public IActionResult BlogListByWriter()
         {
-            var userMail = User.Identity.Name;
-            var writerId = _writerManager.GetAll(userMail).Select(w => w.WriterId).FirstOrDefault();
-            var writerValues = _writerManager.GetById(writerId);
-            var blogs = _blogManager.GetBlogListWithWriter(writerId);
-            return View(blogs);
+            var userName = User.Identity.Name;
+            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerId = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId)
+                .FirstOrDefault();
+            var values = _blogManager.GetBlogListWithWriter(writerId);
+            return View(values);
         }
 
         [HttpGet]
         public IActionResult BlogAdd()
         {
-            CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
-            List<SelectListItem> categories = (from c in categoryManager.GetAll()
+
+            List<SelectListItem> categories = (from category in _categoryManager.GetAll()
                                                select new SelectListItem
                                                {
-                                                   Text = c.CategoryName,
-                                                   Value = c.CategoryId.ToString()
+                                                   Text = category.CategoryName,
+                                                   Value = category.CategoryId.ToString()
                                                }).ToList();
             ViewBag.categoriesList = categories;
             return View();
         }
+
         [HttpPost]
         public IActionResult BlogAdd(Blog blog)
         {
@@ -82,9 +87,11 @@ namespace DotNetCoreCamp.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+
             GetCategoryList();
             return View();
         }
+
         [HttpGet]
         public IActionResult EditBlog(int id)
         {
@@ -92,6 +99,7 @@ namespace DotNetCoreCamp.Controllers
             GetCategoryList();
             return View(blogDetails);
         }
+
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
@@ -105,6 +113,7 @@ namespace DotNetCoreCamp.Controllers
             _blogManager.Update(blog);
             return RedirectToAction("BlogListByWriter");
         }
+
         public void GetCategoryList()
         {
             List<SelectListItem> categories = (from c in _categoryManager.GetAll()
