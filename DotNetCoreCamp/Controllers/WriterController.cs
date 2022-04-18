@@ -1,18 +1,13 @@
 ﻿using Business.Concrete;
-using Business.ValidationRules;
 using DataAccess.Concrete.EntityFramework;
 using DotNetCoreCamp.Models;
 using Entities.Concrete;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using BusinessLayer.Concrete;
-using DataAccess.Concrete;
 
 namespace DotNetCoreCamp.Controllers
 {
@@ -63,13 +58,13 @@ namespace DotNetCoreCamp.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> WriterEditProfile( UserUpdateViewModel userUpdateViewModel)
+        public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel userUpdateViewModel)
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
             values.NameSurname = userUpdateViewModel.NameSurname;
             values.ImageUrl = userUpdateViewModel.ImageUrl;
             values.Email = userUpdateViewModel.Mail;
-            //values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, userUpdateViewModel.Password);
+            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, userUpdateViewModel.Password);
             var result = await _userManager.UpdateAsync(values);
             return RedirectToAction("Index", "Dashboard");
         }
